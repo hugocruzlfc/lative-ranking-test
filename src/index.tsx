@@ -1,17 +1,30 @@
 /* Styles */
-import 'bootstrap/dist/css/bootstrap.min.css'
+import "bootstrap/dist/css/bootstrap.min.css";
 
 /* Libraries */
-import React from 'react'
-import { createRoot } from 'react-dom/client'
+import React from "react";
+import { createRoot } from "react-dom/client";
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 
 /* Components */
-import App from './App'
+import App from "./App";
+import { MeasureFilterContextProvider } from "./context/MeasureFilterContext";
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      suspense: true,
+    },
+  },
+});
 
-const container = document.getElementById('root')
-const root = createRoot(container!)
+const container = document.getElementById("root");
+const root = createRoot(container!);
 root.render(
-    <React.StrictMode>
+  <React.StrictMode>
+    <QueryClientProvider client={queryClient}>
+      <MeasureFilterContextProvider>
         <App />
-    </React.StrictMode>
-)
+      </MeasureFilterContextProvider>
+    </QueryClientProvider>
+  </React.StrictMode>
+);
