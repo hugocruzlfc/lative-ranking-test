@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { useContext, useMemo, useState } from "react";
+import { useContext, useMemo } from "react";
 import Card from "react-bootstrap/Card";
 import { MeasureFilterContext } from "../../context";
 import { getStates } from "../../services";

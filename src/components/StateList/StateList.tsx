@@ -45,8 +45,14 @@ export default function StateList() {
   }
 
   return (
-    <div className="main">
-      <div className="list">
+    <div
+      className="main"
+      role="grid"
+    >
+      <div
+        className="list"
+        role="gridcell"
+      >
         {states.map((state: DataState) => (
           <div
             className="item"
