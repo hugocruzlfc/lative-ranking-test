@@ -1,11 +1,14 @@
 import { createContext, useState } from "react";
 import { Measure, MeasureFilterContextType } from "../types";
+import { FilterType } from "../types";
 
 export const MeasureFilterContext =
   createContext<MeasureFilterContextType | null>(null);
 
-const INITIAL_STATE = {
+const INITIAL_STATE: FilterType = {
   measure: Measure.HOUSEHOLD_INCOME,
+  year: 2019,
+  growthPeriod: 1,
 };
 
 interface Props {
@@ -13,10 +16,10 @@ interface Props {
 }
 
 export const MeasureFilterContextProvider = ({ children }: Props) => {
-  const [measure, setMeasure] = useState<string>(INITIAL_STATE.measure);
+  const [filters, setFilters] = useState<FilterType>(INITIAL_STATE);
 
   return (
-    <MeasureFilterContext.Provider value={{ measure, setMeasure }}>
+    <MeasureFilterContext.Provider value={{ filters, setFilters }}>
       {children}
     </MeasureFilterContext.Provider>
   );

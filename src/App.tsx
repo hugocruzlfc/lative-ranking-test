@@ -17,7 +17,7 @@ import { Measure, MeasureFilterContextType } from "./types";
 const StateList = lazy(() => import("./components/StateList/StateList"));
 
 function App() {
-  const { setMeasure } = useContext(
+  const { filters, setFilters } = useContext(
     MeasureFilterContext
   ) as MeasureFilterContextType;
 
@@ -39,11 +39,17 @@ function App() {
               <Col>
                 <Form.Group>
                   <Form.Label>Year</Form.Label>
-                  <Form.Control as="select">
-                    <option>2019</option>
-                    <option>2018</option>
-                    <option>2017</option>
-                    <option>2016</option>
+                  <Form.Control
+                    as="select"
+                    onChange={(event) =>
+                      setFilters({ ...filters, year: +event.target.value })
+                    }
+                  >
+                    <option value="2019">2019</option>
+                    <option value="2018">2018</option>
+                    <option value="2017">2017</option>
+                    <option value="2016">2016</option>
+                    <option value="2015">2015</option>
                   </Form.Control>
                 </Form.Group>
               </Col>
@@ -52,7 +58,9 @@ function App() {
                   <Form.Label>Measure</Form.Label>
                   <Form.Control
                     as="select"
-                    onChange={(event) => setMeasure(event.target.value)}
+                    onChange={(event) =>
+                      setFilters({ ...filters, measure: event.target.value })
+                    }
                   >
                     <option value={Measure.HOUSEHOLD_INCOME}>
                       {Measure.HOUSEHOLD_INCOME}
@@ -69,10 +77,18 @@ function App() {
               <Col>
                 <Form.Group>
                   <Form.Label>Growth Period</Form.Label>
-                  <Form.Control as="select">
-                    <option>1 Year</option>
-                    <option>2 Years</option>
-                    <option>3 Years</option>
+                  <Form.Control
+                    as="select"
+                    onChange={(event) =>
+                      setFilters({
+                        ...filters,
+                        growthPeriod: +event.target.value,
+                      })
+                    }
+                  >
+                    <option value="1">1 Year</option>
+                    <option value="2">2 Years</option>
+                    <option value="3">3 Years</option>
                   </Form.Control>
                 </Form.Group>
               </Col>

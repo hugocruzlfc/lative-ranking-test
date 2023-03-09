@@ -1,4 +1,6 @@
+import { FilterType } from "./Filter";
+
 export type MeasureFilterContextType = {
-  measure: string;
-  setMeasure: (measure: string) => void;
+  filters: FilterType;
+  setFilters: (filters: FilterType) => void;
 };
